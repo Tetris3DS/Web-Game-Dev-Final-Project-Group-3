@@ -1,16 +1,18 @@
-# Assignment: ?
+# Assignment: Web Game Dev - Final Project
 
 ## Checklist:
-- [X] fill out the self evaluation and Reflection
+- [] complete Snake game
+- [] add levels and level designs
+- [] add Options page
+- [] add difficulty Toggle
+- [] add Leaderboard page
+- [] add 3-letter input for Leaderboard, that saves locally
+- [] fill out the group evaluation
 - [] setup github pages for this project
-- [X] submit the repository link on Canvas
+- [] submit the repository link on Canvas
 
-## Self-Evaluation:
 
-how many points out of 20 do you deserve on this assignment:
-20 out of 20 I completed the tutorial.
+## Group-Reflection:
 
-## Self-Reflection:
-Phaser is a very interesting engine for web games. I see myself using this engine to complete the final project.
-### How long it took me to finish this?
-2 hours.
+
+### How long it took us to finish this?
