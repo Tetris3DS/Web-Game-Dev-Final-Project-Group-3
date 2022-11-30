@@ -3,8 +3,7 @@ var config = {
   width: 640,
   height: 480,
   physics: { default: 'arcade' },
-  backgroundColor: '#bfcc00',
-  parent: 'phaser-example',
+  backgroundColor: 'CCFFFF',
   scene: {
       preload: preload,
       create: create,
