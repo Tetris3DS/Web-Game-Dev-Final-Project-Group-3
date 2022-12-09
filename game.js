@@ -1,5 +1,6 @@
 import { Snake } from "./scripts/Snake.js";
 import { Food } from "./scripts/Food.js";
+import { TweenHelper } from "./scripts/TweenHelper.js";
 
 
 var snake;
@@ -131,10 +132,32 @@ class mainScene extends Phaser.Scene {
             }
     }
 
+    /**
+     * When Snake dies, reset score and snake length to zero.
+     * Snake stays still and flashes before resuming
+     */
     resetSnake () {
+        snake.body.clear(true, true);
         snake = new Snake(this, 8, 8);
-        food = new Food(this, 3, 4);
+        food.total = 0;
         ScoreText.setText('Score: ' + food.total);
+        snake.speed = 100000;
+
+        setTimeout(function () {
+            snake.speed = 100
+        }, 1000)
+        
+        // this.tweens.add({
+        //     targets: snake,
+        //     alpha: 0,
+        //     ease: Phaser.Math.Easing.Sine.InOut,
+        //     duration: 100,
+        //     onComplete: function() {
+        //       snake.speed = 100;
+        //     },
+        //     callbackScope:this
+        // });
+        
     }
 }
 
