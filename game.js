@@ -1,14 +1,11 @@
 import { Snake } from "./scripts/Snake.js";
 import { Food } from "./scripts/Food.js";
-import { TweenHelper } from "./scripts/TweenHelper.js";
 
 
 var snake;
 var food;
 var cursors;
 var ScoreText;
-
-
 
 class titleScene extends Phaser.Scene {
     preload () {}
@@ -69,11 +66,16 @@ class mainScene extends Phaser.Scene {
 
         if (snake.update(time)) {
             //  If the snake updated, we need to check for collision against food
+            //  or if it hit the edge of the map
 
             if (snake.collideWithFood(food))
             {
                 this.repositionFood()
                 ScoreText.setText('Score: ' + food.total);
+            }
+
+            if (snake.hitEdge()) {
+                snake.alive = false;
             }
         }
     }
@@ -139,24 +141,9 @@ class mainScene extends Phaser.Scene {
     resetSnake () {
         snake.body.clear(true, true);
         snake = new Snake(this, 8, 8);
+        console.log(snake.alive);
         food.total = 0;
         ScoreText.setText('Score: ' + food.total);
-        snake.speed = 100000;
-
-        setTimeout(function () {
-            snake.speed = 100
-        }, 1000)
-        
-        // this.tweens.add({
-        //     targets: snake,
-        //     alpha: 0,
-        //     ease: Phaser.Math.Easing.Sine.InOut,
-        //     duration: 100,
-        //     onComplete: function() {
-        //       snake.speed = 100;
-        //     },
-        //     callbackScope:this
-        // });
         
     }
 }
@@ -169,12 +156,6 @@ var config = {
     backgroundColor: 'CCFFFF',
     scene: mainScene,
   };
-  //width: 700, // Width of the game in pixels
-  //height: 400, // Height of the game in pixels
-  // backgroundColor: '#3498db', // The background color (blue)
-  //scene: mainScene, // The name of the scene we created
-  //physics: { default: 'arcade' }, // The physics engine to use (PLEASE UNCOMMENT WHEN YOU WANT TO ADD A PHYSICS SYSTEM)
-  //parent: 'game', // Create the game inside the <div id="game"> 
   
 
 var game = new Phaser.Game(config);

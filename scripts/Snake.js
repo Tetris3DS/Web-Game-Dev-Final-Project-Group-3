@@ -75,38 +75,24 @@ export class Snake extends Phaser.GameObjects.Image {
         /**
          * Based on the heading property (which is the direction the pgroup pressed)
          * we update the headPosition value accordingly.
-         * 
-         * The Math.wrap call allow the snake to wrap around the screen, so when
-         * it goes off any of the sides it re-appears on the other.
+         * .
          */
         switch (this.heading)
         {
             case this.LEFT:
                 this.headPosition.x--;
-                if (this.headPosition.x < 0) {
-                    this.alive = false;
-                }
                 break;
 
             case this.RIGHT:
                 this.headPosition.x++;
-                if (this.headPosition.x > 40) {
-                    this.alive = false;
-                }
                 break;
 
             case this.UP:
                 this.headPosition.y--;
-                if (this.headPosition.y < 0) {
-                    this.alive = false;
-                }
                 break;
 
             case this.DOWN:
                 this.headPosition.y++;
-                if (this.headPosition.y > 30) {
-                    this.alive = false;
-                }
                 break;
         }
  
@@ -159,6 +145,20 @@ export class Snake extends Phaser.GameObjects.Image {
         }
         else
         {
+            return false;
+        }
+    }
+
+    hitEdge() {
+        
+        if (this.headPosition.x < 0 ||
+            this.headPosition.x > 40 ||
+            this.headPosition.y < 0 ||
+            this.headPosition.y > 30) 
+        {
+            return true;
+        }
+        else {
             return false;
         }
     }
